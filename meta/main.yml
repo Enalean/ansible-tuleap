@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Thomas Cottier
+  description: This module installs Tuleap on your server
+  company: Enalean
+  license: license (GPLv2)
+  min_ansible_version: 1.2
+  platforms:
+  - name: EL
+    versions:
+      - 6
+  categories:
+    - development
+
+dependencies: 
+  - { role: goozbach.EPEL, epel_enabled: 1 } 

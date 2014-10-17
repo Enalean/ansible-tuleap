@@ -1,0 +1,21 @@
+---
+# defaults file for tuleap
+#
+
+# The tuleap version you want
+#
+# Possible choices: 
+#   - master (default)
+#   - stable
+tuleap_version: master
+
+# Your organisation/company
+#
+# Default: Tuleap
+tuleap_org_name: Tuleap
+
+# The domain name of Tuleap
+#
+# Usually the fqdn of the server
+# Default: the server ip
+tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"

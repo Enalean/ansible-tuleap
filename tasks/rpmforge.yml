@@ -1,0 +1,10 @@
+# rpmforge installation for Tuleap
+
+- name: Get rpmforge key
+  rpm_key: state=present key=http://apt.sw.be/RPM-GPG-KEY.dag.txt
+
+- name: Install rpmforge RPM
+  yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm state=present
+
+- name: Tweak rpmforge repo conf for Tuleap
+  copy: src=rpmforge.repo dest=/etc/yum.repos.d/rpmforge.repo

@@ -1,0 +1,23 @@
+---
+# tasks file for tuleap
+- include_vars: "{{ tuleap_version }}.yml"
+
+- include: rpmforge.yml
+
+- name: Check if tuleap is installed
+  command: rpm -q tuleap-all
+  ignore_errors: yes
+  register: tuleap_is_installed
+  tags:
+    - tuleap-update
+    - tuleap-install
+
+- include: install.yml
+  when: tuleap_is_installed.rc != 0
+  tags:
+    - tuleap-install
+
+- include: update.yml
+  when: tuleap_is_installed.rc == 0
+  tags: 
+    - tuleap-update
