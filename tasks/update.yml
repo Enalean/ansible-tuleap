@@ -3,6 +3,8 @@
 
 - name: Update Tuleap
   command: yum update tuleap-* --enablerepo=rpmforge-extras -y
+  notify: restart apache
 
 - name: Forgeupgrade
   shell: /usr/lib/forgeupgrade/bin/forgeupgrade --config=/etc/tuleap/forgeupgrade/config.ini update
+  notify: restart tuleap
