@@ -26,12 +26,12 @@ Example Playbook
 
     - hosts: tuleap
       roles:
-         - { role: tcottier-enalean.tuleap, tuleap_version=master, tuleap_domain=tuleap.net }
+         - { role: enalean.ansible-tuleap, tuleap_version=master, tuleap_domain=tuleap.net }
 
 License
 -------
 
-BSD
+BEER-WARE
 
 Author Information
 ------------------
