@@ -12,5 +12,4 @@ galaxy_info:
   categories:
     - development
 
-dependencies: 
-  - { role: goozbach.EPEL, epel_enabled: 1 } 
+dependencies: []
