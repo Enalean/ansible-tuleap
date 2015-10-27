@@ -31,7 +31,7 @@ Example Playbook
 License
 -------
 
-BEER-WARE
+BSD
 
 Author Information
 ------------------

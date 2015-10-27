@@ -3,7 +3,7 @@ galaxy_info:
   author: Thomas Cottier
   description: Use this module to install and update Tuleap on your server
   company: Enalean
-  license: BEER-WARE
+  license: BSD
   min_ansible_version: 1.2
   platforms:
   - name: EL
