@@ -18,8 +18,7 @@ Role Variables
 Dependencies
 ------------
 
-    - goozbach.EPEL (but will be changed cause i'm not satisfied)
-    - more to come
+    - None
 
 Example Playbook
 ----------------
