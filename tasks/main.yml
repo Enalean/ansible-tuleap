@@ -2,22 +2,22 @@
 # tasks file for tuleap
 - include_vars: "{{ tuleap_version }}.yml"
 
-- include: rpmforge.yml
+- include: dependencies.yml
 
-- name: Check if tuleap is installed
-  command: rpm -q tuleap-all
-  ignore_errors: yes
-  register: tuleap_is_installed
+- include: packages.yml
+
+- stat: path=/etc/tuleap/conf/local.inc
+  register: tuleap_conf_file
   tags:
     - tuleap-update
     - tuleap-install
 
 - include: install.yml
-  when: tuleap_is_installed.rc != 0
+  when: tuleap_conf_file.stat.exists == False
   tags:
     - tuleap-install
 
 - include: update.yml
-  when: tuleap_is_installed.rc == 0
+  when: tuleap_conf_file.stat.exists == True
   tags: 
     - tuleap-update

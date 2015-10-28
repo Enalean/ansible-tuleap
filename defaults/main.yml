@@ -19,3 +19,15 @@ tuleap_org_name: Tuleap
 # Usually the fqdn of the server
 # Default: the server ip
 tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"
+
+tuleap_packages:
+  - tuleap-install
+  - tuleap-core-subversion
+  - tuleap-plugin-agiledashboard
+  - tuleap-plugin-graphontrackers
+  - tuleap-theme-flamingparrot
+  - tuleap-documentation
+  - tuleap-customization-default
+  - restler-api-explorer
+  - php-markdown
+  - tuleap-plugin-ldap

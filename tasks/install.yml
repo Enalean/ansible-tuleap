@@ -1,17 +1,6 @@
 # Install tuleap
 #
 
-- name: Install Tuleap repository
-  template:
-    src:   tuleap.repo.j2
-    dest:  /etc/yum.repos.d/tuleap.repo
-    owner: root
-    group: root
-    mode:  0644
-
-- name: Install Tuleap
-  yum: name=tuleap-all enablerepo=rpmforge-extras  
-
 # We are using the raw module here because of passwords generated with /dev/urandom :-(
 - name: Configure Tuleap
   raw: /usr/share/tuleap-install/setup.sh --sys-default-domain="{{tuleap_domain}}" --sys-org-name="{{tuleap_org_name}}" --sys-long-org-name="{{tuleap_org_name}}" 
