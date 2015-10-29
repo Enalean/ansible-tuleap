@@ -1,0 +1,13 @@
+# Install Tuleap RPMs
+
+- name: Install Tuleap repository
+  template:
+    src:   tuleap.repo.j2
+    dest:  /etc/yum.repos.d/tuleap.repo
+    owner: root
+    group: root
+    mode:  0644
+
+- name: Install Tuleap
+  yum: name={{ item }}
+  with_items: "{{ tuleap_packages }}"

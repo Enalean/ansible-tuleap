@@ -1,0 +1,14 @@
+#
+# Tuleap install pre-requisites
+
+- name: Setup epel
+  yum: name=epel-release
+
+- name: Install pre-requistes packages
+  yum: name="{{item}}"
+  with_items:
+   - php-pecl-apc
+   - mysql-server
+
+- name: Start mysql
+  service: name=mysqld state=started
