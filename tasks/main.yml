@@ -6,18 +6,10 @@
 
 - include: packages.yml
 
-- stat: path=/etc/tuleap/conf/local.inc
+- name: Check if this is a new Tuleap install
+  stat: path=/etc/tuleap/conf/local.inc
   register: tuleap_conf_file
-  tags:
-    - tuleap-update
-    - tuleap-install
 
-- include: install.yml
+- include: setup.yml
   when: tuleap_conf_file.stat.exists == False
-  tags:
-    - tuleap-install
 
-- include: update.yml
-  when: tuleap_conf_file.stat.exists == True
-  tags: 
-    - tuleap-update

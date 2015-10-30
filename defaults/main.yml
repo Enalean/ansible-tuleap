@@ -20,7 +20,13 @@ tuleap_org_name: Tuleap
 # Default: the server ip
 tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"
 
+
+# Tuleap packages to install
+# 
+# Default list is inspired
+# by most common services
 tuleap_packages:
+  - tuleap
   - tuleap-install
   - tuleap-core-subversion
   - tuleap-plugin-agiledashboard
@@ -31,3 +37,16 @@ tuleap_packages:
   - restler-api-explorer
   - php-markdown
   - tuleap-plugin-ldap
+  - tuleap-plugin-mediawiki
+  - php-mediawiki-tuleap-123
+  - tuleap-plugin-git-gitolite3
+
+# Do you want to update your platform?
+#
+# Possible values:
+#   - present:  Tuleap is installed
+#   - latest:   Tuleap is updated to the latest 
+#               available version in {{tuleap_version}}
+# 
+# Default value is "present" (no update)
+tuleap_packages_state: present
