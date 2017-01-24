@@ -1,7 +1,5 @@
 ---
-# handlers file for tuleap
-#
-#
+# Tuleap handlers
 
 - name: forgeupgrade
   shell: /usr/lib/forgeupgrade/bin/forgeupgrade --config=/etc/tuleap/forgeupgrade/config.ini update
@@ -12,5 +10,3 @@
 
 - name: restart tuleap
   service: name=tuleap state=restarted
-
-
