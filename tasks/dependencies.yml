@@ -1,11 +1,16 @@
-#
-# Tuleap install pre-requisites
+---
+# Install Tuleap prerequisites
+
+- name: Check SELinux policy
+  command: getenforce
+  register: se_status
+  failed_when: "se_status.stdout not in ('Disabled', 'Permissive')"
 
 - name: Setup epel
-  yum: name=epel-release state="{{tuleap_packages_state}}"
+  yum: name=epel-release state="{{ tuleap_packages_state }}"
 
-- name: Install pre-requistes packages
-  yum: name="{{item}}" state="{{tuleap_packages_state}}"
+- name: Install prerequisite packages
+  yum: name="{{ item }}" state="{{ tuleap_packages_state }}"
   with_items:
    - php-pecl-apc
    - mysql-server
