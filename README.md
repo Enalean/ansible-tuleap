@@ -32,7 +32,7 @@ Example Playbook
 
     - hosts: tuleap
       roles:
-         - { role: enalean.ansible-tuleap, tuleap_version=master, tuleap_domain=tuleap.net, tuleap_packages_state=latest }
+         - { role: enalean.ansible-tuleap, tuleap_version=master, tuleap_domain=tuleap.example.com, tuleap_packages_state=latest }
 
 License
 -------
