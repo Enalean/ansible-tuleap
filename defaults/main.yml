@@ -27,7 +27,6 @@ tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"
 # by most common services
 tuleap_packages:
   - tuleap
-  - tuleap-install
   - tuleap-core-subversion
   - tuleap-plugin-agiledashboard
   - tuleap-plugin-graphontrackers

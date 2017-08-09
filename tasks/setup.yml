@@ -1,6 +1,11 @@
 ---
 # Install Tuleap
 
+- name: Install tuleap install scripts
+  yum:
+    name: tuleap-install
+    state: "{{ tuleap_packages_state }}"
+
 # Fail here if we do not have valid DNS, otherwise the setup script will just stall.
 - name: Set DNS variable
   command: dig {{ tuleap_domain }} +short
@@ -13,3 +18,8 @@
   notify: 
     - restart apache
     - restart tuleap
+
+- name: Remove tuleap install scripts
+  yum:
+    name: tuleap-install
+    state: absent
