@@ -1,6 +1,12 @@
 ---
 # Install Tuleap
 
+# Fail here if we do not have valid DNS, otherwise the setup script will just stall.
+- name: Set DNS variable
+  command: dig {{ tuleap_domain }} +short
+  register: dnscheck
+  failed_when: "dnscheck.stdout == ''"
+
 # We are using the raw module here because of passwords generated with /dev/urandom :-(
 - name: Setup Tuleap
   raw: /usr/share/tuleap-install/setup.sh --sys-default-domain="{{ tuleap_domain }}" --sys-org-name="{{ tuleap_org_name }}" --sys-long-org-name="{{ tuleap_org_name }}"
