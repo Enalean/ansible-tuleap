@@ -9,6 +9,9 @@
 - name: Setup epel
   yum: name=epel-release state="{{ tuleap_packages_state }}"
 
+- name: Setup SCL repositories
+  yum: name=centos-release-scl state="{{ tuleap_packages_state }}"
+
 - name: Install prerequisite packages
   yum: name="{{ item }}" state="{{ tuleap_packages_state }}"
   with_items:
