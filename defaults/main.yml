@@ -4,7 +4,7 @@
 
 # The tuleap version you want
 #
-# Possible choices: 
+# Possible choices:
 #   - master (default)
 #   - stable
 tuleap_version: master
@@ -22,7 +22,7 @@ tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"
 
 
 # Tuleap packages to install
-# 
+#
 # Default list is inspired
 # by most common services
 tuleap_packages:
@@ -32,10 +32,10 @@ tuleap_packages:
   - tuleap-plugin-agiledashboard
   - tuleap-plugin-graphontrackers
   - tuleap-theme-flamingparrot
+  - tuleap-theme-burningparrot
   - tuleap-documentation
   - tuleap-customization-default
-  - restler-api-explorer
-  - php-markdown
+  - tuleap-api-explorer
   - tuleap-plugin-ldap
   - tuleap-plugin-mediawiki
   - php-mediawiki-tuleap-123
@@ -45,8 +45,8 @@ tuleap_packages:
 #
 # Possible values:
 #   - present:  Tuleap is installed
-#   - latest:   Tuleap is updated to the latest 
+#   - latest:   Tuleap is updated to the latest
 #               available version in {{tuleap_version}}
-# 
+#
 # Default value is "present" (no update)
 tuleap_packages_state: present
