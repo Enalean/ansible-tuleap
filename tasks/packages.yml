@@ -15,4 +15,5 @@
   notify:
     - forgeupgrade
     - restart apache
+    - restart nginx
     - restart tuleap
