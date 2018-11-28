@@ -34,7 +34,6 @@ tuleap_packages:
   - tuleap-theme-flamingparrot
   - tuleap-theme-burningparrot
   - tuleap-documentation
-  - tuleap-customization-default
   - tuleap-api-explorer
   - tuleap-plugin-ldap
   - tuleap-plugin-mediawiki
