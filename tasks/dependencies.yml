@@ -12,6 +12,9 @@
 - name: Setup SCL repositories
   yum: name=centos-release-scl state="{{ tuleap_packages_state }}"
 
+- name: Setup remi repositories
+  yum: name=https://rpms.remirepo.net/enterprise/remi-release-6.rpm state="{{ tuleap_packages_state }}"
+
 - name: Install prerequisite packages
   yum: name="{{ item }}" state="{{ tuleap_packages_state }}"
   with_items:
