@@ -10,8 +10,10 @@
     mode:  0644
 
 - name: Install Tuleap
-  yum: name={{ item }} state={{ tuleap_packages_state }} update_cache=yes
-  with_items: "{{ tuleap_packages }}"
+  yum:
+    name: "{{ tuleap_packages|join(', ') }}"
+    state: "{{ tuleap_packages_state }}"
+    update_cache: yes
   notify:
     - forgeupgrade
     - restart apache

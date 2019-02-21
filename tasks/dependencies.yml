@@ -13,13 +13,23 @@
   yum: name=centos-release-scl state="{{ tuleap_packages_state }}"
 
 - name: Setup remi repositories
-  yum: name=https://rpms.remirepo.net/enterprise/remi-release-6.rpm state="{{ tuleap_packages_state }}"
+  yum: name="https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm" state="{{ tuleap_packages_state }}"
 
 - name: Install prerequisite packages
-  yum: name="{{ item }}" state="{{ tuleap_packages_state }}"
-  with_items:
-   - php-pecl-apc
-   - mysql-server
+  yum:
+    name: ['rh-mysql57-mysql-server']
+    state: "{{ tuleap_packages_state }}"
+
+- name: Configure mysql
+  copy:
+    src: tuleap-mysql.cnf
+    dest: /etc/opt/rh/rh-mysql57/my.cnf.d
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
 
 - name: Start mysql
-  service: name=mysqld state=started
+  service:
+    name: rh-mysql57-mysqld
+    state: started
+    enabled: true
