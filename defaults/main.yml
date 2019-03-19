@@ -42,3 +42,5 @@ tuleap_packages:
 #
 # Default value is "present" (no update)
 tuleap_packages_state: present
+
+remi_repo_base_url: "https://rpms.remirepo.net"

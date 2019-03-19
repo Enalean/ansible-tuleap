@@ -13,7 +13,7 @@
   yum: name=centos-release-scl state="{{ tuleap_packages_state }}"
 
 - name: Setup remi repositories
-  yum: name="https://rpms.remirepo.net/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm" state="{{ tuleap_packages_state }}"
+  yum: name="{{ remi_repo_base_url }}/enterprise/remi-release-{{ ansible_distribution_major_version }}.rpm" state="{{ tuleap_packages_state }}"
 
 - name: Install prerequisite packages
   yum:
