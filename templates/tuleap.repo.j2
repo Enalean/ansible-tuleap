@@ -1,6 +1,6 @@
 [Tuleap]
 name=Tuleap
-baseurl="{{ tuleap_baseurl }}"
+baseurl="{{ tuleap_repo_url[tuleap_version]['base'] }}/rhel/{{ ansible_distribution_major_version }}/{{tuleap_repo_url[tuleap_version]['env']}}/$basearch"
 enabled=1
 gpgcheck=1
-gpgkey="{{ tuleap_url_gpg_key }}"
+gpgkey="{{ tuleap_repo_url[tuleap_version]['base'] }}/gpg.key"

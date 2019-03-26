@@ -1,3 +1,0 @@
----
-tuleap_baseurl: https://tuleap.net/pub/tuleap/yum/rhel/{{ ansible_distribution_major_version }}/stable/$basearch
-tuleap_url_gpg_key: https://tuleap.net/pub/tuleap/yum/gpg.key

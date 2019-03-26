@@ -43,4 +43,12 @@ tuleap_packages:
 # Default value is "present" (no update)
 tuleap_packages_state: present
 
+tuleap_repo_url:
+  master:
+    base: "https://ci.tuleap.net/yum/tuleap"
+    env: "dev"
+  stable:
+    base: "https://tuleap.net/pub/tuleap/yum"
+    env: "stable"
+
 remi_repo_base_url: "https://rpms.remirepo.net"

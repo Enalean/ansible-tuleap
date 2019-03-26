@@ -1,6 +1,5 @@
 ---
 # Main Tuleap task list
-- include_vars: "{{ tuleap_version }}.yml"
 
 - name: Check the OS major version
   fail:
