@@ -14,6 +14,6 @@
   with_items: "{{ tuleap_packages }}"
   notify:
     - forgeupgrade
-    - restart apache
+#    - restart apache
     - restart nginx
     - restart tuleap

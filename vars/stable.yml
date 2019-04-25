@@ -1,3 +1,3 @@
 ---
-tuleap_baseurl: https://tuleap.net/pub/tuleap/yum/rhel/6/stable/$basearch
+tuleap_baseurl: https://tuleap.net/pub/tuleap/yum/rhel/7/stable/$basearch
 tuleap_url_gpg_key: https://tuleap.net/pub/tuleap/yum/gpg.key

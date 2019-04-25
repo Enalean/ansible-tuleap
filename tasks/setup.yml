@@ -3,7 +3,10 @@
 
 # We are using the raw module here because of passwords generated with /dev/urandom :-(
 - name: Setup Tuleap
-  raw: /usr/share/tuleap-install/setup.sh --sys-default-domain="{{ tuleap_domain }}" --sys-org-name="{{ tuleap_org_name }}" --sys-long-org-name="{{ tuleap_org_name }}"
+  #raw: /usr/share/tuleap-install/setup.sh --sys-default-domain="{{ tuleap_domain }}" --sys-org-name="{{ tuleap_org_name }}" --sys-long-org-name="{{ tuleap_org_name }}"
+  raw: /usr/share/tuleap/tools/setup.el7.sh --server-name="{{ tuleap_fqdn }}" --mysql-server="localhost" --mysql-password="{{ mysql_root_pwd }} -y"
   notify: 
-    - restart apache
+    - restart nginx
     - restart tuleap
+  #    - restart apache
+
