@@ -1,0 +1,31 @@
+- name: Postfix - setting up the hostname 
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: '^myhostname'
+    line: 'myhostname = {{ tuleap_fqdn }}'
+
+- name: Postfix - setting up alias_maps
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: '^alias_maps'
+    line: 'alias_maps = hash:/etc/aliases,hash:/etc/aliases.codendi'
+
+- name: Postfix - setting up alias_database
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: '^alias_database'
+    line: 'alias_database = hash:/etc/aliases,hash:/etc/aliases.codendi'
+
+- name: Postfix - setting up recipient_delimiter
+  lineinfile:
+    dest: /etc/postfix/main.cf
+    regexp: '^recipient_delimiter'
+    line: 'recipient_delimiter = +'
+
+- name: Postfix is restarted
+  service:
+    name: postfix
+    state: restarted
+
+
+

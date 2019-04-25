@@ -51,3 +51,7 @@ tuleap_packages:
 #
 # Default value is "present" (no update)
 tuleap_packages_state: present
+
+# Default time zone:
+timezone: Europe/Paris
+

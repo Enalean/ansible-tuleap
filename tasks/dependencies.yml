@@ -41,3 +41,21 @@
   shell: |
     scl enable rh-mysql57 "mysqladmin -u root password {{ mysql_root_pwd }}"
 
+- name: Install NTP
+  yum: name=ntp state=latest
+
+- name: NTP is running
+  systemd:
+    state: started
+    name: ntpd
+
+- name: Back-up timezone config
+  command: mv /etc/localtime /etc/localtime.backup
+
+- file:
+    src: /usr/share/zoneinfo/{{ timezone }}
+    dest: /etc/localtime
+    owner: root
+    group: root
+    state: link
+
