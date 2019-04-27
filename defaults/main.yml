@@ -41,6 +41,8 @@ tuleap_packages:
 #  - tuleap-plugin-git-gitolite3
   - tuleap-plugin-git 
   - tuleap-plugin-pullrequest
+  - tuleap-plugin-cardwall
+  - tuleap-plugin-timetracking
 
 # Do you want to update your platform?
 #
