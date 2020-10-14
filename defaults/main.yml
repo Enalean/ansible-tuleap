@@ -27,7 +27,7 @@ tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"
 # by most common services
 tuleap_packages:
   - tuleap
-  - tuleap-install
+#  - tuleap-install
   - tuleap-core-subversion
   - tuleap-plugin-agiledashboard
   - tuleap-plugin-graphontrackers
@@ -38,7 +38,11 @@ tuleap_packages:
   - tuleap-plugin-ldap
   - tuleap-plugin-mediawiki
   - php-mediawiki-tuleap-123
-  - tuleap-plugin-git-gitolite3
+#  - tuleap-plugin-git-gitolite3
+  - tuleap-plugin-git 
+  - tuleap-plugin-pullrequest
+  - tuleap-plugin-cardwall
+  - tuleap-plugin-timetracking
 
 # Do you want to update your platform?
 #
@@ -49,3 +53,7 @@ tuleap_packages:
 #
 # Default value is "present" (no update)
 tuleap_packages_state: present
+
+# Default time zone:
+timezone: Europe/Paris
+

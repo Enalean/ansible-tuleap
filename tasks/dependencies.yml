@@ -14,13 +14,48 @@
   yum: name=centos-release-scl state="{{ tuleap_packages_state }}"
 
 - name: Setup remi repositories
-  yum: name=https://rpms.remirepo.net/enterprise/remi-release-6.rpm state="{{ tuleap_packages_state }}"
+  yum: name=https://rpms.remirepo.net/enterprise/remi-release-7.rpm state="{{ tuleap_packages_state }}"
 
 - name: Install prerequisite packages
   yum: name="{{ item }}" state="{{ tuleap_packages_state }}"
   with_items:
    - php-pecl-apc
-   - mysql-server
+     #   - mysql-server
+   - rh-mysql57-mysql-server
+
+- name: Modify mysql config
+  lineinfile:
+    path: /etc/opt/rh/rh-mysql57/my.cnf.d/rh-mysql57-mysql-server.cnf
+    regexp: '^sql-mode'
+    insertafter: '^[server]'
+    line: 'sql-mode=NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
 
 - name: Start mysql
-  service: name=mysqld state=started
+  #service: name=mysqld state=started
+  systemd:
+    name: rh-mysql57-mysqld
+    state: started
+    enabled: yes
+
+- name: Change mysql root password
+  shell: |
+    scl enable rh-mysql57 "mysqladmin -u root password {{ mysql_root_pwd }}"
+
+- name: Install NTP
+  yum: name=ntp state=latest
+
+- name: NTP is running
+  systemd:
+    state: started
+    name: ntpd
+
+- name: Back-up timezone config
+  command: mv /etc/localtime /etc/localtime.backup
+
+- file:
+    src: /usr/share/zoneinfo/{{ timezone }}
+    dest: /etc/localtime
+    owner: root
+    group: root
+    state: link
+

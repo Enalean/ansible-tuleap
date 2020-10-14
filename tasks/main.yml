@@ -12,3 +12,7 @@
 
 - include: setup.yml
   when: tuleap_conf_file.stat.exists == False
+
+- include: security.yml
+
+- include: mail-server.yml
