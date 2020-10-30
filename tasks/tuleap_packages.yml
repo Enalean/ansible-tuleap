@@ -1,0 +1,21 @@
+---
+# Install Tuleap RPMs
+
+- name: Install mysql server
+  yum: 
+    name: rh-mysql57-mysql-server 
+    state: "{{ tuleap_packages_state }}"
+  notify: restart mysql
+
+- name: Install or update Tuleap packages
+  yum: 
+    name: "{{ tuleap_packages }}"
+    state: "{{ tuleap_packages_state }}"
+    update_cache: yes
+  notify:
+    - forgeupgrade
+    - run.php
+    - site-deploy
+    - restart apache
+    - restart nginx
+    - restart tuleap

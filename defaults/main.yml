@@ -1,25 +1,25 @@
 ---
-# defaults file for tuleap
-#
-
-# The tuleap version you want
-#
-# Possible choices:
-#   - master (default)
-#   - stable
-tuleap_version: master
-
-# Your organisation/company
-#
-# Default: Tuleap
-tuleap_org_name: Tuleap
 
 # The domain name of Tuleap
 #
 # Usually the fqdn of the server
 # Default: the server ip
-tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"
+tuleap_fqdn: "{{ ansible_eth0['ipv4']['address'] }}"
 
+# Mysql root password
+#
+# Default randomly generated
+mysql_root_password: "{{ lookup('password', '.mysql_secret.' + tuleap_fqdn + ' length=20') }}"
+
+# Admin email
+#
+# Email for cert renewal
+# Default: admin@<tuleap_fqdn>
+tuleap_admin_email: "admin@{{ tuleap_fqdn }}"
+
+tuleap_network_ports:
+  - http
+  - https
 
 # Tuleap packages to install
 #
@@ -27,22 +27,25 @@ tuleap_domain: "{{ ansible_eth0['ipv4']['address'] }}"
 # by most common services
 tuleap_packages:
   - tuleap
-#  - tuleap-install
-  - tuleap-core-subversion
+  - tuleap-api-explorer
+  - tuleap-documentation
   - tuleap-plugin-agiledashboard
+  - tuleap-plugin-cardwall
+  - tuleap-plugin-docman
+  - tuleap-plugin-frs
+  - tuleap-plugin-git
+  - tuleap-plugin-gitlfs
   - tuleap-plugin-graphontrackers
+  - tuleap-plugin-mediawiki
+  - tuleap-plugin-pullrequest
+  - tuleap-plugin-tracker
   - tuleap-theme-flamingparrot
   - tuleap-theme-burningparrot
-  - tuleap-documentation
-  - tuleap-api-explorer
-  - tuleap-plugin-ldap
-  - tuleap-plugin-mediawiki
-  - php-mediawiki-tuleap-123
-#  - tuleap-plugin-git-gitolite3
-  - tuleap-plugin-git 
-  - tuleap-plugin-pullrequest
-  - tuleap-plugin-cardwall
-  - tuleap-plugin-timetracking
+
+# Do you want to create a letsencrypt cert?
+#
+# Default: True
+tuleap_generate_le_cert: True
 
 # Do you want to update your platform?
 #

@@ -4,11 +4,38 @@
 - name: forgeupgrade
   shell: /usr/lib/forgeupgrade/bin/forgeupgrade --config=/etc/tuleap/forgeupgrade/config.ini update
 
+- name: run.php
+  shell: /usr/share/tuleap/tools/utils/php73/run.php --module=nginx
+
+- name: site-deploy
+  shell: tuleap-cfg site-deploy
+
 - name: restart apache
-  service: name=httpd state=restarted
+  systemd: 
+    name: httpd
+    state: restarted
 
 - name: restart nginx
-  service: name=nginx state=restarted
+  systemd: 
+    name: nginx 
+    state: restarted
 
 - name: restart tuleap
-  service: name=tuleap state=restarted
+  systemd: 
+    name: tuleap 
+    state: restarted
+
+- name: restart postfix
+  systemd: 
+    name: postfix 
+    state: restarted
+
+- name: reload firewall
+  systemd: 
+    name: firewalld
+    state: reloaded
+
+- name: restart mysql
+  systemd: 
+    name: rh-mysql57-mysqld
+    state: reloaded

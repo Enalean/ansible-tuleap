@@ -1,0 +1,15 @@
+---
+- name: Install NTP
+  yum: name=ntp state="{{ tuleap_packages_state }}"
+  
+- name: NTP is running
+  systemd:
+    state: started
+    name: ntpd
+
+- file:
+    src: /usr/share/zoneinfo/{{ timezone }}
+    dest: /etc/localtime
+    owner: root
+    group: root
+    state: link

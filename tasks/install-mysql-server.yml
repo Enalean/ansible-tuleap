@@ -1,0 +1,18 @@
+---
+
+- name: Modify mysql config
+  lineinfile:
+    path: /etc/opt/rh/rh-mysql57/my.cnf.d/rh-mysql57-mysql-server.cnf
+    regexp: '^sql-mode'
+    insertafter: '^[server]'
+    line: 'sql-mode=NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+
+- name: Start mysql
+  systemd:
+    name: rh-mysql57-mysqld
+    state: started
+    enabled: yes
+
+- name: Change mysql root password
+  shell: |
+    scl enable rh-mysql57 "mysqladmin -u root password {{ mysql_root_password }}"

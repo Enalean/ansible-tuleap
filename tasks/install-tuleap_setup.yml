@@ -1,0 +1,11 @@
+---
+# Install Tuleap
+
+# We are using the raw module here because of passwords generated with /dev/urandom :-(
+- name: Setup Tuleap
+  raw: /usr/share/tuleap/tools/setup.el7.sh --configure --server-name="{{ tuleap_fqdn }}" --mysql-server="localhost" --mysql-password="{{ mysql_root_password }} -y"
+  notify: 
+    - restart nginx
+    - restart tuleap
+    - restart apache
+

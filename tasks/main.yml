@@ -1,18 +1,23 @@
 ---
 # Main Tuleap task list
-- include_vars: "{{ tuleap_version }}.yml"
 
-- include: dependencies.yml
+- name: Gather installed packages
+  package_facts:
+    manager: auto
 
-- include: packages.yml
+- include: selinux.yml
+- include: repositories.yml
+- include: tuleap_packages.yml
+- include: mail-server.yml
+
+- include: firewalld.yml
+  when: "'firewalld' in ansible_facts.packages"
 
 - name: Check if this is a new Tuleap install
   stat: path=/etc/tuleap/conf/local.inc
   register: tuleap_conf_file
 
-- include: setup.yml
+- include: install.yml
   when: tuleap_conf_file.stat.exists == False
 
-- include: security.yml
-
-- include: mail-server.yml
+- include: letsencrypt_cert.yml

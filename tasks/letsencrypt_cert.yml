@@ -1,0 +1,34 @@
+---
+  
+- name: Install Certbot
+  yum: 
+    name: certbot, python2-certbot-nginx
+    state: latest
+
+- name: Request certificate
+  command: /usr/bin/certbot --nginx certonly -d {{ tuleap_fqdn }} -m {{ tuleap_admin_email }} -n --agree-tos
+  notify: restart nginx
+
+- name: Cron job for certbot is installed
+  cron: 
+    minute: "30"
+    hour: "2,14"
+    job: "/usr/bin/certbot renew" 
+
+- name: nginx has correct ssl_certificate entry
+  replace:
+    path: /etc/nginx/conf.d/tuleap.conf
+    regexp: 'ssl_certificate\ .*'
+    replace: '    ssl_certificate             /etc/letsencrypt/live/{{ tuleap_fqdn }}/fullchain.pem;'
+  notify: restart nginx
+
+- name: nginx has correct ssl_certificate_key entry
+  replace:
+    path: /etc/nginx/conf.d/tuleap.conf
+    regexp: 'ssl_certificate_key .*'
+    replace: '    ssl_certificate_key         /etc/letsencrypt/live/{{ tuleap_fqdn }}/privkey.pem;'
+  notify: restart nginx
+
+
+
+

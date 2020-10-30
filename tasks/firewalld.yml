@@ -1,0 +1,9 @@
+---
+    
+- name: Setup firewall for http/https
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+  loop: "{{ tuleap_network_ports }}"
+  notify: reload firewall
