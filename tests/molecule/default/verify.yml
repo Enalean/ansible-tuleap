@@ -1,0 +1,12 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: Check if Tuleap homepage is up
+    uri:
+      url: https://localhost/
+      return_content: yes
+      validate_certs: false
+    register: this
+    failed_when: "'Tuleap Community Edition' not in this.content"

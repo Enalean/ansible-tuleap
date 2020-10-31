@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ../../../../
+  vars:
+      tuleap_fqdn:             localhost
+      tuleap_admin_email:      admin@tuleap.example.com
+      tuleap_packages_state:   present
+      tuleap_generate_le_cert: False

@@ -38,4 +38,4 @@
 - name: restart mysql
   systemd: 
     name: rh-mysql57-mysqld
-    state: reloaded
+    state: restarted
