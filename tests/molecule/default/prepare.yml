@@ -1,0 +1,29 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+  - name: Install libselinux-python
+    package:
+      name: libselinux-python
+      state: present
+  - name: Install selinux-policy
+    package:
+      name: selinux-policy
+      state: present
+  - name: Install postfix
+    package:
+      name: postfix
+      state: present
+  - name: Bind postfix only on IPv4
+    replace:
+      path: /etc/postfix/main.cf
+      regexp: 'inet_interfaces = localhost'
+      replace: 'inet_interfaces = 127.0.0.1'
+  - name: Install OpenSSH server
+    package:
+      name: openssh-server
+      state: present
+  - name: Start sshd
+    systemd: 
+      name: sshd 
+      state: started

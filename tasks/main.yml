@@ -21,3 +21,4 @@
   when: tuleap_conf_file.stat.exists == False
 
 - include: letsencrypt_cert.yml
+  when: tuleap_generate_le_cert == True
