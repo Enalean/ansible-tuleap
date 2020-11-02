@@ -18,6 +18,7 @@ mysql_root_password: "{{ lookup('password', '.mysql_secret.' + tuleap_fqdn + ' l
 tuleap_admin_email: "admin@{{ tuleap_fqdn }}"
 
 tuleap_network_ports:
+  - ssh
   - http
   - https
 
