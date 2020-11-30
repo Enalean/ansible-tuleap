@@ -6,7 +6,7 @@
     state: latest
 
 - name: Request certificate
-  command: /usr/bin/certbot --nginx certonly -d {{ tuleap_fqdn }} -m {{ tuleap_admin_email }} -n --agree-tos
+  command: /usr/bin/certbot --nginx certonly -d {{ tuleap_fqdn | quote }} -m {{ tuleap_admin_email | quote }} -n --agree-tos
   notify: restart nginx
 
 - name: Cron job for certbot is installed
