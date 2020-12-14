@@ -15,4 +15,4 @@
 
 - name: Change mysql root password
   shell: |
-    scl enable rh-mysql57 "mysqladmin -u root password {{ mysql_root_password }}"
+    /opt/rh/rh-mysql57/root/usr/bin/mysql -u root -NBe 'ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY {{ mysql_root_password | to_json(ensure_ascii=False) }}; FLUSH PRIVILEGES;';
