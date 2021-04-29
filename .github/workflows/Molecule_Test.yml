@@ -1,5 +1,7 @@
 name: Test with Molecule
 
+permissions: read-all
+
 on:
   push:
     branches:
