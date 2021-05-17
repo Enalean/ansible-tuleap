@@ -4,9 +4,6 @@
 - name: forgeupgrade
   shell: /usr/lib/forgeupgrade/bin/forgeupgrade --config=/etc/tuleap/forgeupgrade/config.ini update
 
-- name: run.php
-  shell: /usr/share/tuleap/tools/utils/php73/run.php --module=nginx
-
 - name: site-deploy
   shell: tuleap-cfg site-deploy
 
