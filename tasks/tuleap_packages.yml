@@ -13,7 +13,6 @@
     state: "{{ tuleap_packages_state }}"
     update_cache: yes
   notify:
-    - forgeupgrade
     - site-deploy
     - restart apache
     - restart nginx
