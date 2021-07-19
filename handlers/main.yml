@@ -1,9 +1,6 @@
 ---
 # Tuleap handlers
 
-- name: forgeupgrade
-  shell: /usr/lib/forgeupgrade/bin/forgeupgrade --config=/etc/tuleap/forgeupgrade/config.ini update
-
 - name: site-deploy
   shell: tuleap-cfg site-deploy
 
