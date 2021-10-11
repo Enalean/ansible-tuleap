@@ -5,7 +5,8 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: centos:7
+    image: ansible-test-tuleap-install
+    dockerfile: Dockerfile
     command: /sbin/init
     tmpfs:
       - /run
