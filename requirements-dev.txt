@@ -1,1 +1,1 @@
-molecule[ansible,docker,lint]==3.6.0
+molecule[ansible,docker,lint]==3.6.1
