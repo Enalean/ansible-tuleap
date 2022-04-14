@@ -1,5 +1,9 @@
 ---
 # Main Tuleap task list
+- name: Check the OS major version
+  fail:
+    msg: "This tool supports only RedHat/CentOS after version 6. You use {{ ansible_os_family }} {{ ansible_distribution_major_version }}."
+  when: ansible_os_family != "RedHat" or ansible_distribution_major_version|int <= 6
 
 - name: Gather installed packages
   package_facts:
