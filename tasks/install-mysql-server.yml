@@ -1,18 +1,19 @@
 ---
 
-- name: Modify mysql config
-  lineinfile:
-    path: /etc/opt/rh/rh-mysql57/my.cnf.d/rh-mysql57-mysql-server.cnf
-    regexp: '^sql-mode'
-    insertafter: '^[server]'
-    line: 'sql-mode=NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
+- name: Add Tuleap specific configuration
+  copy:
+    src: tuleap.cnf
+    dest: /etc/opt/rh/rh-mysql80/my.cnf.d/tuleap.cnf
+    owner: root
+    group: root
+    mode:  0644
 
 - name: Start mysql
   systemd:
-    name: rh-mysql57-mysqld
+    name: rh-mysql80-mysqld
     state: started
     enabled: yes
 
 - name: Change mysql root password
   shell: |
-    /opt/rh/rh-mysql57/root/usr/bin/mysql -u root -NBe 'ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY {{ mysql_root_password | to_json(ensure_ascii=False) }}; FLUSH PRIVILEGES;';
+    /opt/rh/rh-mysql80/root/usr/bin/mysql -u root -NBe 'ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY {{ mysql_root_password | to_json(ensure_ascii=False) }}; FLUSH PRIVILEGES;';

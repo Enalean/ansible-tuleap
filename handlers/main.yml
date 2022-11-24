@@ -31,5 +31,5 @@
 
 - name: restart mysql
   systemd: 
-    name: rh-mysql57-mysqld
+    name: rh-mysql80-mysqld
     state: restarted
