@@ -3,9 +3,9 @@
   hosts: all
   gather_facts: false
   tasks:
-  - name: Check if Tuleap homepage is up
+  - name: Check if Tuleap API is up
     uri:
-      url: https://localhost/
+      url: https://localhost/api/version
       return_content: yes
       validate_certs: false
     register: this
