@@ -58,6 +58,11 @@ tuleap_generate_le_cert: True
 # Default value is "present" (no update)
 tuleap_packages_state: present
 
+tuleap_repo_url: "https://ci.tuleap.net/yum/tuleap"
+tuleap_edition: "community"
+
+remi_repo_base_url: "https://rpms.remirepo.net"
+
 # Default time zone:
 timezone: Europe/Paris
 
